@@ -39,7 +39,7 @@ class OAuth2{
         $params=array();
         $params['url'] = $this->access_token_url;
         $params['method']='post';
-        $params['args']=array(    'code'=>$code, 
+        $params['args']=array(  'code'=>$code, 
                                 'client_id'=>$client_id, 
                                 'redirect_uri'=>$redirect_url, 
                                 'client_secret'=>$secret, 
@@ -52,12 +52,13 @@ class OAuth2{
         $this->error = '';
         $method=isset($params['method'])?$params['method']:'get';
         $headers = isset($params['headers'])?$params['headers']:array();
+        $args = isset($params['args'])?$params['args']:'';
+        $url = $params['url'];
 
-        $url = $params['url'].'?';
+        $url.='?';
         if($this->access_token){
             $url .= $this->access_token_name.'='.$this->access_token;
         }
-        $args=$params['args'];
 
         if($method=='get'){
             $url.='&'.$this->preparePostFields($args); 
@@ -70,6 +71,8 @@ class OAuth2{
             curl_setopt($ch, CURLOPT_POSTFIELDS, $this->preparePostFields($args)); 
         }elseif($method=='delete'){
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+        }elseif($method=='put'){
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         }
         if(is_array($headers) && !empty($headers)){
             $headers_arr=array();
