@@ -1,0 +1,1 @@
+Core class for OAuth 2.0 implementation.
