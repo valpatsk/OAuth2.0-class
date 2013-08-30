@@ -51,7 +51,7 @@ $params is array:
 
 <pre>
 $params['url'] = "...";//url to make the call
-$params['method'] = "post";/method, get, post, put, delete
+$params['method'] = "post";//method, get, post, put, delete
 $params['headers'] = array('Content-Type'=>'application/json', 'x-li-format'=>'json'); // list of headers $header_name=>$header_value
 $params['args'] = array('count'=>200);//any arguments to pass in request
 or
