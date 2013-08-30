@@ -34,5 +34,24 @@ class LinkedInOAuth2 extends OAuth2 {
             $this->access_token = $result['access_token'];
             return $result['access_token'];
     }
+    public function getConnections(){
+        $params=array();
+        $params['url'] = "https://api.linkedin.com/v1/people/~/connections";
+        $params['method']='get';
+        $params['args']['format']='json';
+        $result =  $this->makeRequest($params);
+        return json_decode($result,true); 
+    }
 }
+</pre>
+
+Main method to make the call is makeRequest($params);
+$params is array:
+<pre>
+$params['url'] = "...";//url to make the call
+$params['method'] = "post";/method, get, post, put, delete
+$params['headers'] = array('Content-Type'=>'application/json', 'x-li-format'=>'json'); // list of headers $header_name=>$header_value
+$params['args'] = array('count'=>200);//any arguments to pass in request
+or
+$params['args'] = 'any text xml or json for example';//to pass plain text in post request for example
 </pre>
