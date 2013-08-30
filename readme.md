@@ -45,8 +45,10 @@ class LinkedInOAuth2 extends OAuth2 {
 }
 </pre>
 
-Main method to make the call is makeRequest($params);
+Main method to make the call is makeRequest($params); .
+
 $params is array:
+
 <pre>
 $params['url'] = "...";//url to make the call
 $params['method'] = "post";/method, get, post, put, delete
